@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "50092ca3-5f1c-4f07-99a4-eb32d597b65a",
+		"name": "latitude-code-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DateValidationRequest",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8443/stock-api/v1/stock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"stock-api",
+						"v1",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validRequest",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stock\": {\r\n        \"id\": 11,\r\n        \"startDateTime\" : \"2018-12-11 10:12\",\r\n        \"endDateTime\" : \"2018-12-11 15:24\", \r\n        \"stockPrices\" : [\r\n           40,12,30,34,50,70\r\n        ]\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8443/stock-api/v1/stock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"stock-api",
+						"v1",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validRequestOnePrice",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stock\": {\r\n        \"id\": 11,\r\n        \"startDateTime\" : \"2018-12-11 10:12\",\r\n        \"endDateTime\" : \"2018-12-11 20:24\", \r\n        \"stockPrices\" : [\r\n           40\r\n        ]\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8443/stock-api/v1/stock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"stock-api",
+						"v1",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IdValidationRequest",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8443/stock-api/v1/stock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"stock-api",
+						"v1",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DateFormatValidationRequest",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8443/stock-api/v1/stock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"stock-api",
+						"v1",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StockPriceEmptyValidationRequest",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8443/stock-api/v1/stock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"stock-api",
+						"v1",
+						"stock"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
