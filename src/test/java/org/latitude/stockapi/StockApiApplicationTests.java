@@ -18,7 +18,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK, classes = StockApiApplication.class)
@@ -41,7 +42,7 @@ class StockApiApplicationTests {
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .content(buildRequestBody(null, "2021-08-15 10:01", "2021-08-15 10:01", 1)))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("{\"errorCode\":\"400 BAD_REQUEST\",\"reason\":\"[stockPrices can not be empty, stockPrices can not be null]\"}"));
+                .andExpect(jsonPath("$.errorCode", Matchers.is("400 BAD_REQUEST")));
 
     }
 
@@ -52,7 +53,7 @@ class StockApiApplicationTests {
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .content(buildRequestBody(List.of(), "2021-08-15 10:01", "2021-08-15 10:01", 1)))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("{\"errorCode\":\"400 BAD_REQUEST\",\"reason\":\"[stockPrices can not be empty]\"}"));
+                .andExpect(jsonPath("$.errorCode", Matchers.is("400 BAD_REQUEST")));
 
     }
 
@@ -63,7 +64,7 @@ class StockApiApplicationTests {
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .content(buildRequestBody(List.of(40, 20, 50, 10), "2021-08-15 10:0", "2021-08-15 10:01", 1)))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("{\"errorCode\":\"400 BAD_REQUEST\",\"reason\":\"[DateTime must in yyyy-MM-dd HH:mm format]\"}"));
+                .andExpect(jsonPath("$.errorCode", Matchers.is("400 BAD_REQUEST")));
 
     }
 
@@ -74,7 +75,7 @@ class StockApiApplicationTests {
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .content(buildRequestBody(List.of(40, 20, 50, 10), "2021-08-15 10:01", "2021-08-15 10:12.2", 1)))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("{\"errorCode\":\"400 BAD_REQUEST\",\"reason\":\"[DateTime must in yyyy-MM-dd HH:mm format]\"}"));
+                .andExpect(jsonPath("$.errorCode", Matchers.is("400 BAD_REQUEST")));
 
     }
 
@@ -85,7 +86,7 @@ class StockApiApplicationTests {
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .content(buildRequestBody(List.of(40, 20, 50, 10), "2021-08-15 10:01", "2021-08-15 10:12", 0)))
                 .andExpect(status().isBadRequest())
-                .andExpect(content().string("{\"errorCode\":\"400 BAD_REQUEST\",\"reason\":\"[id can not be negative or zero]\"}"));
+                .andExpect(jsonPath("$.errorCode", Matchers.is("400 BAD_REQUEST")));
 
     }
 
@@ -96,7 +97,7 @@ class StockApiApplicationTests {
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .content(buildRequestBody(List.of(40, 20, 50, 10), "2021-08-16 10:01", "2021-08-15 10:12", 1)))
                 .andExpect(status().isInternalServerError())
-                .andExpect(content().string("{\"errorCode\":\"500 INTERNAL_SERVER_ERROR\",\"reason\":\"end date time can not be before start date time\"}"));
+                .andExpect(jsonPath("$.errorCode", Matchers.is("500 INTERNAL_SERVER_ERROR")));
 
     }
 
@@ -106,7 +107,8 @@ class StockApiApplicationTests {
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .accept(MediaType.APPLICATION_JSON_VALUE)
                         .content(buildRequestBody(null, "2021-08-16 10:01.1", "2021-08-15 10:12.3", -1)))
-                .andExpect(status().isBadRequest());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.errorCode", Matchers.is("400 BAD_REQUEST")));
 
     }
 
