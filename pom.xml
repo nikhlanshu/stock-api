@@ -54,6 +54,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>stock-api-1.0.0-RELEASE</finalName>
+		<finalName>stock-api</finalName>
 	</build>
 </project>
